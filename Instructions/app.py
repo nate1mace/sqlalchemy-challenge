@@ -42,8 +42,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-#         f"/api/v1.0/<start>"
-#         f"/api/v1.0/<start>/<end>"
+        f"/api/v1.0/<start><br/>"
+        f"/api/v1.0/<start>/<end><br/>"
 
     )
 
@@ -94,9 +94,6 @@ def tobs():
 
 @app.route("/api/v1.0/<start>")
 def start_date(start):
-    """Fetch the Justice League character whose real_name matches
-       the path variable supplied by the user, or a 404 if not."""
-
     
     results =  session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
             filter(Measurement.date >= start).all()
@@ -105,9 +102,6 @@ def start_date(start):
 
 @app.route("/api/v1.0/<start>/<end>")
 def start_and_end_date(start,end):
-    """Fetch the Justice League character whose real_name matches
-       the path variable supplied by the user, or a 404 if not."""
-
     
     results =  session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
             filter(Measurement.date >= start).filter(Measurement.date <= end).all()
